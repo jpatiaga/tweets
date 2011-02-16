@@ -20,10 +20,25 @@ class PostController extends Zend_Controller_Action
 						'consumerSecret' => 'OiDQZqJMsMcO1Y4R798eqSDXgq46KRjO9oP47NNkZU0'
 				);
 				$consumer = new Zend_Oauth_Consumer($config);
-				$token = $consumer->getRequestToken();
-				$_SESSION['TWITTER_REQUEST_TOKEN'] = serialize($token);
 				
-				$token = unserialize($_SESSION['TWITTER_REQUEST_TOKEN']);
+				if (!empty($_GET) && isset($_SESSION['TWITTER_REQUEST_TOKEN'])) {
+						$token = $consumer->getAccessToken(
+                 $_GET,
+                 unserialize($_SESSION['TWITTER_REQUEST_TOKEN'])
+             );
+						 $_SESSION['TWITTER_ACCESS_TOKEN'] = serialize($token);
+						 
+						 // Now that we have an Access Token, we can discard the Request Token
+						 $_SESSION['TWITTER_REQUEST_TOKEN'] = null;
+				} elseif (!isset($_SESSION['TWITTER_ACCESS_TOKEN'])) {
+						$token = $consumer->getRequestToken();
+						$consumer->redirect();
+				} else {
+						// Mistaken request? Some malfeasant trying something?
+						exit('Invalid callback request. Oops. Sorry.');
+				}
+				
+				$token = unserialize($_SESSION['TWITTER_ACCESS_TOKEN']);
 				
 				$twitter = new Zend_Service_Twitter(array(
 						'username' => 'jpatiaga',
