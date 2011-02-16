@@ -32,6 +32,7 @@ class PostController extends Zend_Controller_Action
 						 $_SESSION['TWITTER_REQUEST_TOKEN'] = null;
 				} elseif (!isset($_SESSION['TWITTER_ACCESS_TOKEN'])) {
 						$token = $consumer->getRequestToken();
+						$_SESSION['TWITTER_REQUEST_TOKEN'] = serialize($token);
 						$consumer->redirect();
 				} else {
 						// Mistaken request? Some malfeasant trying something?
