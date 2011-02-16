@@ -1,0 +1,18 @@
+<div id="header">JP <div id="logged-in-as">
+<?php echo $this->loggedInAs(); ?> </div>
+</div>
+<p><a href="<?php echo $this->url(
+    array(
+        'controller' => 'post',
+        'action'     => 'sign'
+    ),
+    'default',
+    true) ?>">Write a new post</a></p>
+ 
+Posts for user: <?php echo $this->username; ?><br />
+<dl>
+    <?php foreach ($this->entries as $entry): ?>
+    <dt><?php echo $this->escape($entry->username) ?> - <?php echo $this->escape($entry->created) ?></dt>
+    <dd><?php echo $this->escape($entry->post) ?></dd>
+    <?php endforeach ?>
+</dl>
