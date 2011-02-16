@@ -12,6 +12,26 @@ class PostController extends Zend_Controller_Action
     {
         $post = new Application_Model_PostMapper();
         $this->view->entries = $post->fetchAll();
+				
+				$config = array(
+						'callbackUrl' => 'http://tweets.morph5.com/index.php/post',
+						'siteUrl' => 'http://twitter.com/oauth',
+						'consumerKey' => 'ervfx4KNBPfH7Zo4H96HA',
+						'consumerSecret' => 'OiDQZqJMsMcO1Y4R798eqSDXgq46KRjO9oP47NNkZU0'
+				);
+				$consumer = new Zend_Oauth_Consumer($config);
+				$token = $consumer->getRequestToken();
+				$_SESSION['TWITTER_REQUEST_TOKEN'] = serialize($token);
+				
+				$token = unserialize($_SESSION['TWITTER_REQUEST_TOKEN']);
+				
+				$twitter = new Zend_Service_Twitter(array(
+						'username' => 'jpatiaga',
+						'accessToken' => $token
+				));
+				
+				$response = $twitter->account->verifyCredentials();
+				print var_dump($response);
     }
 
     public function signAction()
