@@ -35,19 +35,16 @@ class PostController extends Zend_Controller_Action
 						$token = $consumer->getRequestToken();
 						setcookie('TWITTER_REQUEST_TOKEN', serialize($token), time()+7200);
 						$consumer->redirect();
-				} else {
-						// Mistaken request? Some malfeasant trying something?
-						exit('Invalid callback request. Oops. Sorry.');
 				}
 				
-				//$token = unserialize($_COOKIE['TWITTER_ACCESS_TOKEN']);
+				$token = unserialize($_COOKIE['TWITTER_ACCESS_TOKEN']);
 				print '[pasoooooooooooooo]';
 				$twitter = new Zend_Service_Twitter(array(
 						'username' => 'jpatiaga',
 						'accessToken' => $token
 				));
 				
-				$response = $twitter->account->verifyCredentials();
+				$response = $twitter->status->userTimeline();
 				print var_dump($response);
     }
 
