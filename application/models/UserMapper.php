@@ -24,6 +24,14 @@ class Application_Model_UserMapper
         }
         return $this->_dbTable;
     }
+		
+		public function getUser($userid) {
+				$result = $this->getDbTable()->find($userid);
+        if (0 == count($result)) {
+            return;
+        }
+        return = $result->current();
+		}
 
 		public function usernameById($userid)
 		{

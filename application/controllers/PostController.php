@@ -80,15 +80,19 @@ class PostController extends Zend_Controller_Action
     public function userpostsAction()
     {
         $userid = $this->getRequest()->getParam('userid');
-        				$selecteduser = new Application_Model_UserMapper();
-        				$this->view->username = $selecteduser->usernameById($userid);
-        				$post = new Application_Model_PostMapper();
-                $this->view->entries = $post->searchByUser($userid);
+				$selecteduser = new Application_Model_UserMapper();
+				$this->view->username = $selecteduser->usernameById($userid);
+				$postMapper = new Application_Model_PostMapper();
+				$this->view->entries = $postMapper->searchByUser($userid);
     }
 
     public function listAction()
     {
-        $data = array('red','green','blue','yellow');
+				$userid = $this->getRequest()->getParam('userid');
+				$userMapper = new Application_Model_UserMapper();
+				$user = $userMapper->getUser($userid);
+				$twitter_username = $user->twitteruser;
+        $data = $twitter->status->userTimeline($twitter_username);
 				$this->view->data = $data;
     }
 
