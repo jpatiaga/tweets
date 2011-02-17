@@ -56,14 +56,15 @@ class Application_Model_PostMapper
 		
 		public function searchByUser($userid)
 		{
-				$select = $this->getDbTable()->select()->where('userid = ?', $userid);
+				$select = $this->getDbTable()->select()->where('userid = ?', $userid)->order('created DESC');
 				$resultSet = $this->getDbTable()->fetchAll($select);
 				return $this->_get_entries($resultSet);
 		}
  
     public function fetchAll()
     {
-        $resultSet = $this->getDbTable()->fetchAll();
+				$select = $this->getDbTable()->select()->order('created DESC');
+        $resultSet = $this->getDbTable()->fetchAll($select);
         return $this->_get_entries($resultSet);
     }
 

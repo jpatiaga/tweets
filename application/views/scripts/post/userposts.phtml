@@ -1,6 +1,3 @@
-<div id="header">JP <div id="logged-in-as">
-<?php echo $this->loggedInAs(); ?> </div>
-</div>
 <p><a href="<?php echo $this->url(
     array(
         'controller' => 'post',
@@ -16,3 +13,11 @@ Posts for user: <?php echo $this->username; ?><br />
     <dd><?php echo $this->escape($entry->post) ?></dd>
     <?php endforeach ?>
 </dl>
+
+<div id="tweets">
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+        $('#tweets').load('/default/post/list/format/html');
+  });
+</script>
