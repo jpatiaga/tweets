@@ -14,10 +14,4 @@ Posts for user: <?php echo $this->username; ?><br />
     <?php endforeach ?>
 </dl>
 
-<div id="tweets">
-</div>
-<script type="text/javascript">
-  $(document).ready(function() {
-        $('#tweets').load('/index.php/post/list/format/html?userid=<?php echo $_GET['userid'] ?>');
-  });
-</script>
+<?php echo $this->tweets($_GET['userid']); ?>
