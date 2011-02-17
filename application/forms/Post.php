@@ -8,15 +8,12 @@ class Application_Form_Post extends Zend_Form
         // Set the method for the display form to POST
         $this->setMethod('post');
  
-        // Add an email element
-        $this->addElement('text', 'userid', array(
-            'label'      => 'Your userid:',
-            'required'   => true,
-            'filters'    => array('StringTrim'),
-            'validators' => array()
+		$auth = Zend_Auth::getInstance();
+		$user = $auth->getIdentity();
+        $this->addElement('hidden', 'userid', array(
+            'value'      => $user->id,
         ));
  
-        // Add the comment element
         $this->addElement('textarea', 'post', array(
             'label'      => 'Your post:',
             'required'   => true,

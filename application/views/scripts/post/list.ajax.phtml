@@ -1,8 +1,8 @@
 <h3>Tweets for user: <strong><?php echo $this->twitteruser; ?></strong></h3>
 <ul>
-<?php foreach ($this->tweets as $tweet) : ?>
+<?php foreach ($this->tweets as $id => $tweet) : ?>
 	<li id="tweet_<?php echo $tweet->id; ?>">
-		<img class="twitter-image" src="<?php echo $tweet->user->profile_image_url; ?>" />
+		<img class="twitter-image" src="<?php echo $tweet->profile_image_url; ?>" />
 		<span class="date"><?php echo $tweet->created_at; ?></span>
 		<p><?php echo $tweet->text; ?></p>
 		<a href="javascript: hideTweet(<?php echo $tweet->id; ?>);">Hide this tweet</a>

@@ -56,7 +56,8 @@ class AuthController extends Zend_Controller_Action
     public function logoutAction()
     {
         Zend_Auth::getInstance()->clearIdentity();
-                $this->_helper->redirector('index', 'index'); // back to login page
+		setcookie('TWITTER_REQUEST_TOKEN', '', time()-7200); // clear twitter request cookie, in case it exists
+        $this->_helper->redirector('index', 'index'); // back to login page
     }
 
     public function signupAction()

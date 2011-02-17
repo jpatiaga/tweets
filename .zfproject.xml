@@ -17,6 +17,7 @@
           <actionMethod actionName="sign"/>
           <actionMethod actionName="userposts"/>
           <actionMethod actionName="list"/>
+          <actionMethod actionName="hide"/>
         </controllerFile>
         <controllerFile controllerName="Auth">
           <actionMethod actionName="index"/>
@@ -28,11 +29,14 @@
       <modelsDirectory>
         <dbTableDirectory>
           <dbTableFile dbTableName="Post"/>
+          <dbTableFile dbTableName="Hiddentweets"/>
         </dbTableDirectory>
         <modelFile modelName="PostMapper"/>
         <modelFile modelName="Post"/>
         <modelFile modelName="Users"/>
         <modelFile modelName="UserMapper"/>
+        <modelFile modelName="HiddentweetsMapper"/>
+        <modelFile modelName="Hiddentweets"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>
@@ -63,6 +67,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Post">
             <viewScriptFile forActionName="list"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Post">
+            <viewScriptFile forActionName="hide"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
