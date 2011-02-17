@@ -37,14 +37,14 @@ class PostController extends Zend_Controller_Action
 						$consumer->redirect();
 				}
 				
-				//$token = unserialize($_COOKIE['TWITTER_ACCESS_TOKEN']);
+				$token = unserialize($_COOKIE['TWITTER_ACCESS_TOKEN']);
 				print '[pasoooooooooooooo]';
 				$twitter = new Zend_Service_Twitter(array(
 						'username' => 'jpatiaga',
 						'accessToken' => $token
 				));
 				
-				$response = $twitter->account->verifyCredentials();
+				$response = $twitter->status->userTimeline();
 				print var_dump($response);
     }
 
