@@ -18,6 +18,6 @@ Posts for user: <?php echo $this->username; ?><br />
 </div>
 <script type="text/javascript">
   $(document).ready(function() {
-        $('#tweets').load('/index.php/post/list/format/html?userid=<?php echo $_GET['userid'] ?>');
+        $('#tweets').load('/index.php/post/list/format/html?userid=<?php echo $this->getRequest()->getParam('userid') ?>');
   });
 </script>

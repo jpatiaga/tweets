@@ -100,7 +100,7 @@ class PostController extends Zend_Controller_Action
 		}
 		$tweets = $this->twitter->status->userTimeline( array('id'=>$twitteruser) );
 		$this->view->twitteruser = $twitteruser;
-		$this->view->tweets = $tweets;
+		$this->view->data = $tweets;
     }
 
 

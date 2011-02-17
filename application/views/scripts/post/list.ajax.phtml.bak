@@ -4,8 +4,6 @@
 	<li>
 		<img class="twitter-image" src="<?php echo $tweet->user->profile_image_url; ?>" />
 		<span class="date"><?php echo $tweet->created_at; ?></span>
-		<p><?php echo $tweet->text; ?></p>
-		<a href="#<?php echo $tweet->id; ?>">Hide this tweet</a>
 	</li>
 <?php endforeach; ?>
 </ul>
