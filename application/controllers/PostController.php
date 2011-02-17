@@ -21,7 +21,7 @@ class PostController extends Zend_Controller_Action
 				);
 				$consumer = new Zend_Oauth_Consumer($config);
 				
-				if (!empty($_GET)) { die(var_dump($_SESSION)); }
+				//if (!empty($_GET)) { die(var_dump($_SESSION)); }
 				if (!empty($_GET) && isset($_SESSION['TWITTER_REQUEST_TOKEN'])) {
 						$token = $consumer->getAccessToken(
                  $_GET,
@@ -33,7 +33,9 @@ class PostController extends Zend_Controller_Action
 						 $_SESSION['TWITTER_REQUEST_TOKEN'] = null;
 				} elseif (!isset($_SESSION['TWITTER_ACCESS_TOKEN'])) {
 						$token = $consumer->getRequestToken();
+						session_start();
 						$_SESSION['TWITTER_REQUEST_TOKEN'] = serialize($token);
+						die(var_dump($_SESSION));
 						$consumer->redirect();
 				} else {
 						// Mistaken request? Some malfeasant trying something?
