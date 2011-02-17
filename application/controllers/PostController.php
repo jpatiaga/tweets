@@ -2,18 +2,11 @@
 
 class PostController extends Zend_Controller_Action
 {
+		public $twitter;
 
     public function init()
     {
-        /* Initialize action controller here */
-    }
-
-    public function indexAction()
-    {
-        $post = new Application_Model_PostMapper();
-        $this->view->entries = $post->fetchAll();
-				
-				$config = array(
+        $config = array(
 						'callbackUrl' => 'http://tweets.morph5.com/index.php/post',
 						'siteUrl' => 'http://twitter.com/oauth',
 						'consumerKey' => 'ervfx4KNBPfH7Zo4H96HA',
@@ -39,12 +32,18 @@ class PostController extends Zend_Controller_Action
 				
 				$token = unserialize($_COOKIE['TWITTER_ACCESS_TOKEN']);
 				print '[pasoooooooooooooo]';
-				$twitter = new Zend_Service_Twitter(array(
+				$this->twitter = new Zend_Service_Twitter(array(
 						'username' => 'jpatiaga',
 						'accessToken' => $token
 				));
+    }
+
+    public function indexAction()
+    {
+        $post = new Application_Model_PostMapper();
+        $this->view->entries = $post->fetchAll();
 				
-				$response = $twitter->status->userTimeline();
+				$response = $this->twitter->status->userTimeline();
 				print var_dump($response);
     }
 
