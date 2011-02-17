@@ -91,9 +91,10 @@ class PostController extends Zend_Controller_Action
 				$userid = $this->getRequest()->getParam('userid');
 				$userMapper = new Application_Model_UserMapper();
 				$user = $userMapper->getUser($userid);
-				$twitter_username = $user->twitteruser;
+				$this->view->data = $user;
+				/*$twitter_username = $user->twitteruser;
         $data = $this->twitter->status->userTimeline($twitter_username);
-				$this->view->data = $data;
+				$this->view->data = $data;*/
     }
 
 
