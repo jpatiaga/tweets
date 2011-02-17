@@ -9,7 +9,7 @@
 All posts: <br />
 <dl>
     <?php foreach ($this->entries as $entry): ?>
-    <dt><?php echo $this->escape($entry->username) ?></dt>
+    <dt><a href="<?php echo $this->baseUrl(); ?>/post/userposts?userid=<?php echo $entry->userid; ?>"><?php echo $this->escape($entry->username) ?></a> - <?php echo $this->escape($entry->created) ?></dt>
     <dd><?php echo $this->escape($entry->post) ?></dd>
     <?php endforeach ?>
 </dl>
