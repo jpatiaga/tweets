@@ -66,15 +66,12 @@ class PostController extends Zend_Controller_Action
 																					 'File',
 																					 $frontendOptions,
 																					 $backendOptions);			
-					}
+		}
 
     public function indexAction()
     {
         $post = new Application_Model_PostMapper();
                 $this->view->entries = $post->fetchAll();
-        				
-        				//$response = $this->twitter->status->userTimeline();
-        				//print var_dump($response);
     }
 
     public function signAction()
@@ -105,24 +102,24 @@ class PostController extends Zend_Controller_Action
 
     public function listAction()
     {
-		$userid = $this->getRequest()->getParam('userid');
-		if (empty($userid)) {
-			$auth = Zend_Auth::getInstance();
-			$twitteruser = $auth->getIdentity()->twitteruser;
-		}
-		else {
-			$userMapper = new Application_Model_UserMapper();
-			$user = $userMapper->getUser($userid);
-			$twitteruser = $user->twitteruser;
-		}
-		if ( ($tweets = $this->cache->load($twitteruser)) === false ) {
-				$tweets = $this->twitter->status->userTimeline( array('id'=>$twitteruser) );
-				$this->cache->save($tweets, $twitteruser);
-		} else {
-				print '[[[del cache!!!!!!]]]';
-		}
-		$this->view->twitteruser = $twitteruser;
-		$this->view->tweets = $tweets;
+				$userid = $this->getRequest()->getParam('userid');
+				if (empty($userid)) {
+					$auth = Zend_Auth::getInstance();
+					$twitteruser = $auth->getIdentity()->twitteruser;
+				}
+				else {
+					$userMapper = new Application_Model_UserMapper();
+					$user = $userMapper->getUser($userid);
+					$twitteruser = $user->twitteruser;
+				}
+				if ( ($tweets = $this->cache->load($twitteruser)) === false ) {
+						$tweets = $this->twitter->status->userTimeline( array('id'=>$twitteruser) );
+						$this->cache->save($tweets, $twitteruser);
+				} else {
+						print '[[[del cache!!!!!!]]]';
+				}
+				$this->view->twitteruser = $twitteruser;
+				$this->view->tweets = $tweets;
     }
 
 
