@@ -1,11 +1,11 @@
 <h3>Tweets for user: <strong><?php echo $this->twitteruser; ?></strong></h3>
 <ul>
 <?php foreach ($this->tweets as $tweet) : ?>
-	<li>
+	<li id="tweet_<?php echo $tweet->id; ?>">
 		<img class="twitter-image" src="<?php echo $tweet->user->profile_image_url; ?>" />
 		<span class="date"><?php echo $tweet->created_at; ?></span>
 		<p><?php echo $tweet->text; ?></p>
-		<a href="#<?php echo $tweet->id; ?>">Hide this tweet</a>
+		<a href="javascript: hideTweet(<?php echo $tweet->id; ?>);">Hide this tweet</a>
 	</li>
 <?php endforeach; ?>
 </ul>
