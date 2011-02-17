@@ -22,7 +22,7 @@ class PostController extends Zend_Controller_Action
         				);
         				$consumer = new Zend_Oauth_Consumer($config);
         				
-        				if (!empty($_GET) && isset($_COOKIE['TWITTER_REQUEST_TOKEN']) && !empty($_COOKIE['TWITTER_REQUEST_TOKEN'])) {
+        				if (!empty($_GET) && !isset($_GET['userid']) && isset($_COOKIE['TWITTER_REQUEST_TOKEN']) && !empty($_COOKIE['TWITTER_REQUEST_TOKEN'])) {
         						$token = $consumer->getAccessToken(
                          $_GET,
                          unserialize($_COOKIE['TWITTER_REQUEST_TOKEN'])
