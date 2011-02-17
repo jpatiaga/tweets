@@ -30,7 +30,7 @@ class Application_Model_UserMapper
         if (0 == count($result)) {
             return;
         }
-        return = $result->current();
+        return $result->current();
 		}
 
 		public function usernameById($userid)
