@@ -1,0 +1,12 @@
+body {font-family: Arial, Helvetica, sans-serif;}
+a {text-decoration: none;}
+a:hover {text-decoration: underline;}
+#logged-in-as {float: right;margin-right: 50px;}
+dl dt{font-size: 10px; color:#666; margin-bottom: 5px;}
+dl dd{margin-bottom: 15px;}
+#tweets {width:450px; border: 1px solid #AAA; padding: 10px;}
+#tweets h3 {font-size:14px; font-weight: normal;}
+#tweets h3 strong {font-weight: bold;}
+#tweets ul li {list-style:none; border-bottom: 1px solid #CCC; margin-bottom: 10px;}
+#tweets ul li img {float: left; padding: 0 5px 5px 0;}
+#tweets ul li .date {font-size: 10px; color:#666;}
